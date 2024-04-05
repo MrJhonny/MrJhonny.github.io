@@ -1,28 +1,37 @@
 body {
-    background-color: #000;
-    color: #00ff00;
-    font-family: monospace;
+  background-color: #000000ca;
+  color: #00ff00;
+  font-family: monospace;
+}
+
+.terminal {
+  padding: 10px;
+}
+
+.prompt {
+  display: inline;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
   }
-  
-  .terminal {
-    padding: 10px;
+  50% {
+    border-color: #00ff00;
   }
-  
-  .prompt {
-    display: inline;
-  }
-  
-  #commandInput {
-    background-color: transparent;
-    border: none;
-    color: inherit;
-    font-family: inherit;
-    font-size: inherit;
-    outline: none;
-    width: calc(100% - 30px);
-  }
-  
-  #commandInput:focus {
-    outline: none;
-  }
-  
+}
+
+#commandInput {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  width: calc(100% - 30px);
+}
+
+#commandInput:focus {
+  outline: none;
+}
