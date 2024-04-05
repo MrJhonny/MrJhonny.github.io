@@ -1,0 +1,28 @@
+body {
+    background-color: #000;
+    color: #00ff00;
+    font-family: monospace;
+  }
+  
+  .terminal {
+    padding: 10px;
+  }
+  
+  .prompt {
+    display: inline;
+  }
+  
+  #commandInput {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    width: calc(100% - 30px);
+  }
+  
+  #commandInput:focus {
+    outline: none;
+  }
+  
