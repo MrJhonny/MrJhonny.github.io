@@ -4,7 +4,7 @@ body {
   font-family: monospace;
 }
 
-.terminal {
+.terminal .input-container {
   padding: 10px;
 }
 
