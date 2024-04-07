@@ -55,7 +55,7 @@ async function fetchRandomPokemonImage() {
     const data = await response.json();
     const randomPokemonIndex = Math.floor(Math.random() * data.results.length);
     const randomPokemonName = data.results[randomPokemonIndex].name;
-    const pokemonData = await fetchPokemonData(randomPokemonName); // Llamar a fetchPokemonData() para obtener los datos del Pokémon
+    const pokemonData = await fetchPokemonData(randomPokemonName);
     if (!pokemonData) {
       throw new Error('Pokemon not found');
     }
@@ -63,7 +63,7 @@ async function fetchRandomPokemonImage() {
     pokemonImage.src = pokemonData.sprites.front_default;
     printOutput(`Name: ${pokemonData.name}`);
     printOutput(`Height: ${pokemonData.height}`);
-    printOutput(`Weight: ${pokemonData.weight}`); // Mostrar los datos del Pokémon
+    printOutput(`Weight: ${pokemonData.weight}`);
     printOutput(pokemonImage.outerHTML);
   } catch (error) {
     printOutput('Failed to fetch Pokemon data');
@@ -176,16 +176,16 @@ function createSocialLink(text, url, iconClass) {
 }
 
 function getFormattedDate() {
-  // Obtener la fecha y hora actual
   const currentDateTime = new Date().toLocaleString();
   const formattedDateTime = `Current date and time: ${currentDateTime}`;
   printOutput(formattedDateTime);
 }
 
 function clearTerminal() {
-  location.reload(); // Recargar la página para limpiar la terminal
+  location.reload(); 
 }
 
 function openMedia() {
-  openLinkInNewTab('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+  window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+  commandInput.focus(); 
 }
