@@ -32,8 +32,47 @@ function showWelcomeMessage() {
   }
 }
 
+// Función para obtener datos de un Pokémon de la PokeAPI
+async function fetchPokemonData(pokemonName) {
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    if (!response.ok) {
+      throw new Error('Pokemon not found');
+    }
+    const pokemonData = await response.json();
+    return pokemonData;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function fetchRandomPokemonImage() {
+  try {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/');
+    if (!response.ok) {
+      throw new Error('Failed to fetch data');
+    }
+    const data = await response.json();
+    const randomPokemonIndex = Math.floor(Math.random() * data.results.length);
+    const randomPokemonName = data.results[randomPokemonIndex].name;
+    const pokemonData = await fetchPokemonData(randomPokemonName); // Llamar a fetchPokemonData() para obtener los datos del Pokémon
+    if (!pokemonData) {
+      throw new Error('Pokemon not found');
+    }
+    const pokemonImage = document.createElement('img');
+    pokemonImage.src = pokemonData.sprites.front_default;
+    printOutput(`Name: ${pokemonData.name}`);
+    printOutput(`Height: ${pokemonData.height}`);
+    printOutput(`Weight: ${pokemonData.weight}`); // Mostrar los datos del Pokémon
+    printOutput(pokemonImage.outerHTML);
+  } catch (error) {
+    printOutput('Failed to fetch Pokemon data');
+  }
+}
+
+
 function processCommand(command) {
-  showWelcomeMessage(); 
+  showWelcomeMessage();
   console.log(command)
 
   const terminal = document.querySelector('.terminal');
@@ -41,23 +80,23 @@ function processCommand(command) {
   // Crear un nuevo div para el input del comando
   const inputDiv = document.createElement('div');
   inputDiv.classList.add("consola");
-    
+
   // Crear el input
   const inputElement = document.createElement('input');
   inputElement.setAttribute('type', 'text');
   inputElement.setAttribute('disabled', '');
   inputElement.value = `$ ${command}`; // Mostrar el comando ingresado por el usuario
   inputElement.setAttribute('id', 'commandInput');
-  
+
   // Agregar el input al div del input
   inputDiv.appendChild(inputElement);
-  
+
   // Agregar el div del input a la terminal
   terminal.appendChild(inputDiv);
 
   switch (command) {
     case 'help':
-      printOutput('Available commands: help, social, info, date');
+      printOutput('Available commands: about, date, help, info, ls, media, poke, social.');
       break;
     case 'social':
       printSocialLinks();
@@ -68,9 +107,22 @@ function processCommand(command) {
     case 'date':
       getFormattedDate();
       break;
-    case 'clear':
+    case 'clear', 'c':
       clearTerminal();
       break;
+    case 'ls -l', 'ls':
+      ls();
+      break;
+    case 'media':
+      openMedia();
+      break;
+    case 'poke':
+      fetchRandomPokemonImage();
+      break;
+    case 'about':
+      about();
+      break;
+
     default:
       printOutput('Command not found. Type "help" for available commands.');
       break;
@@ -81,13 +133,13 @@ function processCommand(command) {
 function printSocialLinks() {
   const socialLinks = document.createElement('ul');
   socialLinks.classList.add('social-links');
-
+  printOutput('Mis Redes Sociales de Contacto.');
   const facebookLink = createSocialLink('Facebook', 'https://web.facebook.com/jhon.vidal.90226', 'fa-facebook');
   const whatsappLink = createSocialLink('Whatsapp', 'https://api.whatsapp.com/send?phone=56959059544', 'fa-whatsapp');
   const instagramLink = createSocialLink('Instagram', 'https://www.instagram.com/logic_null', 'fa-instagram');
   const linkedInLink = createSocialLink('LinkedIn', 'https://www.linkedin.com/in/jhon-muller', 'fa-linkedin-in');
   const githubLink = createSocialLink('Github', 'https://github.com/MrJhonny', 'fa-github');
-  const curriculumLink = createSocialLink('Curriculum', './assets/docs/CV_Ingles_Jhon-Muller.pdf', 'fa-linkedin-in');
+  const curriculumLink = createSocialLink('Curriculum', './assets/docs/CV_Ingles_Jhon-Muller.pdf', 'fa-wpforms');
 
   socialLinks.appendChild(facebookLink);
   socialLinks.appendChild(whatsappLink);
@@ -99,6 +151,14 @@ function printSocialLinks() {
   printOutput(socialLinks.outerHTML);
 }
 
+function ls() {
+  printOutput("-r--r--r-- jmuller jmuller 17/06/1992 12:00 CV_Ingles_Jhon-Muller.pdf");
+}
+
+function about() {
+  printOutput("Terminal Emulator Project created by Jhon Müller");
+}
+
 function createSocialLink(text, url, iconClass) {
   const linkItem = document.createElement('li');
   const link = document.createElement('a');
@@ -106,6 +166,8 @@ function createSocialLink(text, url, iconClass) {
 
   link.href = url;
   icon.classList.add('fab', iconClass);
+  // Agregar margen derecho al ícono para crear espacio entre el ícono y el texto
+  icon.style.marginRight = '5px';
   link.appendChild(icon);
   link.appendChild(document.createTextNode(text));
   linkItem.appendChild(link);
@@ -122,4 +184,8 @@ function getFormattedDate() {
 
 function clearTerminal() {
   location.reload(); // Recargar la página para limpiar la terminal
+}
+
+function openMedia() {
+  openLinkInNewTab('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
 }
