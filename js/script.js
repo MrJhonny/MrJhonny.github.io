@@ -11,7 +11,6 @@ commandInput.addEventListener('keydown', function (event) {
   }
 });
 
-
 function printOutput(output) {
   const terminal = document.querySelector('.terminal');
   const outputDiv = document.createElement('div');
@@ -25,9 +24,9 @@ let welcomeMessageShown = false;
 showWelcomeMessage();
 
 function showWelcomeMessage() {
-  // Verificamos si el mensaje de bienvenida no ha sido mostrado antes
+  // Verificar el mensaje de bienvenida no ha sido mostrado antes
   if (!welcomeMessageShown) {
-    printOutput('Welcome to the terminal simulation. Type "help" for available commands.');
+    printOutput('Welcome to the terminal simulation. Type "help" or "?" for available commands.');
     welcomeMessageShown = true; // Actualizamos la bandera para indicar que el mensaje ha sido mostrado
   }
 }
@@ -96,7 +95,8 @@ function processCommand(command) {
 
   switch (command) {
     case 'help':
-      printOutput('Available commands: about, date, help, info, ls, media, poke, social.');
+    case '?':
+        printOutput('Available commands: about, date, help, info, ls, media, poke, social.');
       break;
     case 'social':
       printSocialLinks();
@@ -107,11 +107,13 @@ function processCommand(command) {
     case 'date':
       getFormattedDate();
       break;
-    case 'clear', 'c':
+    case 'clear':
+    case 'c':
       clearTerminal();
       break;
-    case 'ls -l', 'ls':
-      ls();
+    case 'ls -l':
+    case 'ls':
+        ls();
       break;
     case 'media':
       openMedia();
@@ -124,7 +126,7 @@ function processCommand(command) {
       break;
 
     default:
-      printOutput('Command not found. Type "help" for available commands.');
+      printOutput('Command not found. Type "help" of "?" for available commands.');
       break;
   }
 }
@@ -152,7 +154,7 @@ function printSocialLinks() {
 }
 
 function ls() {
-  printOutput("-r--r--r-- jmuller jmuller 17/06/1992 12:00 CV_Ingles_Jhon-Muller.pdf");
+  printOutput("-r--r--r-- jmuller jmuller 17/06/1992 12:00 25000 CV_Ingles_Jhon-Muller.pdf");
 }
 
 function about() {
