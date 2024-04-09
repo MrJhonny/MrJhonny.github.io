@@ -167,6 +167,8 @@ function createSocialLink(text, url, iconClass) {
   const icon = document.createElement('i');
 
   link.href = url;
+  // Agrega el atributo target con el valor "_blank" para que el enlace se abra en una nueva pestaña
+  link.setAttribute('target', '_blank');
   icon.classList.add('fab', iconClass);
   // Agregar margen derecho al ícono para crear espacio entre el ícono y el texto
   icon.style.marginRight = '5px';
