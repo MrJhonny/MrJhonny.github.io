@@ -20,7 +20,7 @@ function printOutput(output) {
 
 let welcomeMessageShown = false;
 
-// Se llama a esta función al cargar la página
+// Se llama a esta función al cargar la página //
 showWelcomeMessage();
 
 function showWelcomeMessage() {
