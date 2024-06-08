@@ -1,32 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>whoami</title>
-  <link rel="stylesheet" href="./css/styles.css">
-  <link rel="icon" href="./assets/favicon.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .contact-item {
+            display: flex; /* Hace que los elementos se alineen en una fila */
+            align-items: center; /* Centra verticalmente los elementos */
+            margin-bottom: 10px; /* Ajusta el espacio entre los elementos */
+        }
+        .contact-item i {
+            margin-right: 10px; /* Ajusta el espacio entre el icono y el texto */
+        }
+    </style>
 </head>
-
 <body>
-  <div class="input-container">
-    <p style="display: inline-block;">
-      $
-    </p>
-    <input type="text" id="commandInput" autofocus autocomplete="off" />
-  </div>
-  <div class="terminal">
-    <div class="prompt"></div>
-  </div>
-
-  <div class="social-links">
-    <!-- Aquí se agregarán dinámicamente los enlaces sociales -->
-  </div>
-
-  <script src="./js/script.js" type=""></script>
+    <div class="container">
+        <div class="profile-card">
+            <img src="assets/img/profile.png" alt="Profile Picture" class="profile-pic">
+            <h1>Jhon Müller Belmar</h1>
+            <p class="role">Cloud Engineer | Infrastructure | AWS - GCP - Azure</p>
+            <div class="social-links">
+                <a href="https://web.facebook.com/jhon.vidal.90226"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/jhon-muller/"><i class="fa fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/logic_null/"><i class="fa fa-instagram"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=5695905954"><i class="fa fa-whatsapp"></i></a>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fa fa-phone"></i>
+                    <p>+569 5905 9544</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <p>jhonvidalb@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-map-marker"></i>
+                    <p>Santiago, Región Metropolitana</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-birthday-cake"></i>
+                    <p>Junio 17, 1992</p>
+                </div>
+            </div>
+            <a href="./assets/cv/CV_Jhon-Muller.pdf" download>
+                <button class="download-btn">Download CV</button>
+              </a>
+                      </div>
+    </div>
+    <script src="assets/js/index.js"></script>
 </body>
-
 </html>
